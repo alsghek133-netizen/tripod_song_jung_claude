@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>트라이팟 일별 판정</title>
+<style>
+:root{--bg:#f6f7f9;--fg:#15181d;--mut:#5d6672;--card:#fff;--line:#e1e5ea;
+--atk:#0d7a4f;--atkbg:#e3f4ec;--mid:#8a5a00;--midbg:#fbf0d9;--def:#a3262a;--defbg:#fbe6e6}
+@media (prefers-color-scheme:dark){:root{--bg:#0f1216;--fg:#e8ebef;--mut:#9aa4b0;--card:#171b21;--line:#2a313a;
+--atk:#53d19b;--atkbg:#12281f;--mid:#f0b94d;--midbg:#2b2210;--def:#ff8a8d;--defbg:#2e1516}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 -apple-system,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif}
+main{max-width:640px;margin:0 auto;padding:20px 16px 40px}
+h1{font-size:18px;margin:0 0 14px} h2{font-size:15px;margin:26px 0 8px;color:var(--mut);font-weight:600}
+.hero{border-radius:14px;padding:20px 18px}
+.hero.atk{background:var(--atkbg);color:var(--atk)} .hero.mid{background:var(--midbg);color:var(--mid)} .hero.def{background:var(--defbg);color:var(--def)}
+.asof{font-size:13px;opacity:.85} .target{font-size:clamp(22px,7.2vw,32px);font-weight:800;margin:4px 0;letter-spacing:-.5px;white-space:nowrap}
+.sub{font-size:15px} .do{margin-top:10px;font-weight:700;font-size:15px}
+table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:14px}
+th,td{padding:9px 10px;text-align:left;border-bottom:1px solid var(--line)}
+.kv th{font-weight:500;color:var(--mut);width:42%} .kv td{font-variant-numeric:tabular-nums;font-weight:600} .note{color:var(--mut);font-size:12px;font-weight:400!important}
+.hist thead th{font-size:12px;color:var(--mut);font-weight:600} .hist td{font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.chg td{font-weight:700;background:var(--midbg)}
+.scroll{overflow-x:auto} tr:last-child td,tr:last-child th{border-bottom:0}
+footer{margin-top:28px;font-size:12px;color:var(--mut)}
+</style></head><body><main>
+<h1>트라이팟 일별 판정</h1>
+
+<section class="hero def">
+  <div class="asof">2026-11-20 미국장 종가 기준</div>
+  <div class="target">현금 100%</div>
+  <div class="sub">시장 상태 <b>하락</b> · 변경됨 → 리밸런싱</div>
+  <div class="do">오늘 해야 할 일: 목표 비중으로 리밸런싱</div>
+</section>
+<h2>판정에 쓴 숫자</h2>
+<table class="kv"><tr><th>NDX 종가</th><td>25,028.98</td><td class='note'></td></tr><tr><th>250일선</th><td>27,548.30</td><td class='note'></td></tr><tr><th>상승 기준선 (×1.01)</th><td>27,823.78</td><td class='note'>이 선 위 = 상승</td></tr><tr><th>하락 기준선 (×0.95)</th><td>26,170.88</td><td class='note'>이 선 아래 = 하락</td></tr><tr><th>VIX 10일 평균</th><td>23.21</td><td class='note'>상승일 때 28 미만 / 하락일 때 18 미만</td></tr><tr><th>52주 고점</th><td>31,361.37</td><td class='note'></td></tr><tr><th>고점 대비 낙폭</th><td>20.19%</td><td class='note'>9% 이하여야 공격</td></tr></table>
+<h2>최근 기록</h2>
+<div class="scroll"><table class="hist">
+<thead><tr><th>날짜</th><th>NDX</th><th>상태</th><th>목표 비중 (색칠 = 변경일)</th></tr></thead>
+<tbody><tr class='chg'><td>11-20</td><td>25,029</td><td>하락</td><td>현금 100%</td></tr><tr class=''><td>11-19</td><td>26,517</td><td>상승</td><td>QQQ 50% / QLD 50%</td></tr><tr class=''><td>11-18</td><td>27,116</td><td>상승</td><td>QQQ 50% / QLD 50%</td></tr><tr class=''><td>11-17</td><td>27,002</td><td>상승</td><td>QQQ 50% / QLD 50%</td></tr><tr class=''><td>11-16</td><td>27,197</td><td>상승</td><td>QQQ 50% / QLD 50%</td></tr><tr class=''><td>11-13</td><td>27,944</td><td>상승</td><td>QQQ 50% / QLD 50%</td></tr><tr class=''><td>11-12</td><td>28,289</td><td>상승</td><td>QQQ 50% / QLD 50%</td></tr><tr class=''><td>11-11</td><td>28,374</td><td>상승</td><td>QQQ 50% / QLD 50%</td></tr><tr class=''><td>11-10</td><td>27,741</td><td>상승</td><td>QQQ 50% / QLD 50%</td></tr><tr class=''><td>11-09</td><td>27,908</td><td>상승</td><td>QQQ 50% / QLD 50%</td></tr><tr class=''><td>11-06</td><td>26,990</td><td>상승</td><td>QQQ 50% / QLD 50%</td></tr><tr class=''><td>11-05</td><td>26,630</td><td>상승</td><td>QQQ 50% / QLD 50%</td></tr><tr class=''><td>11-04</td><td>28,437</td><td>상승</td><td>QQQ 50% / QLD 50%</td></tr><tr class=''><td>11-03</td><td>28,180</td><td>상승</td><td>QQQ 50% / QLD 50%</td></tr><tr class=''><td>11-02</td><td>27,990</td><td>상승</td><td>QQQ 50% / QLD 50%</td></tr></tbody></table></div>
+
+<footer>
+생성 2026-11-23 11:07 KST · 자료: Yahoo Finance (^NDX, ^VIX)<br>
+기록 시작 2026-09-18. 개인이 정한 규칙을 기계적으로 계산한 결과이며 투자 권유가 아닙니다. 매매 판단과 책임은 본인에게 있습니다.
+</footer></main></body></html>
