@@ -5,6 +5,11 @@ on:
     # 평일 21:30 UTC = 한국시간 화~토 06:30 (미국장 마감 후)
     - cron: "30 21 * * 1-5"
   workflow_dispatch:   # Actions 탭에서 수동 실행 버튼
+    inputs:
+      test_notify:
+        description: "텔레그램 테스트 메시지도 보내기"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -17,11 +22,27 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: pip install yfinance pandas
-      - run: python tripod.py
+      - run: pip install yfinance pandas numpy
+      - name: 판정 계산 · 페이지 생성
+        run: python tripod.py
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TEST_NOTIFY: ${{ github.event.inputs.test_notify }}
       - name: 변경됐을 때만 저장
         run: |
           git config user.name "tripod-bot"
           git config user.email "tripod-bot@users.noreply.github.com"
-          git add index.html data.json
+          git add -A
           git diff --cached --quiet || (git commit -m "판정 $(date -u +%F)" && git push)
+      - name: 실패하면 알림
+        if: failure()
+        env:
+          T: ${{ secrets.TELEGRAM_TOKEN }}
+          C: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          if [ -n "$T" ] && [ -n "$C" ]; then
+            curl -s "https://api.telegram.org/bot$T/sendMessage" \
+              --data-urlencode "chat_id=$C" \
+              --data-urlencode "text=[트라이팟] 오늘 자동 판정이 실패했어요. GitHub 저장소의 Actions 탭을 확인해 주세요." > /dev/null
+          fi
