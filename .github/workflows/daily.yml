@@ -3,7 +3,8 @@ name: daily-judgment
 on:
   schedule:
     # 평일 21:30 UTC = 한국시간 화~토 06:30 (미국장 마감 후)
-    - cron: "30 21 * * 1-5"
+    - cron: "47 21 * * 1-5"
+    - cron: "47 22 * * 1-5"
   workflow_dispatch:   # Actions 탭에서 수동 실행 버튼
     inputs:
       test_notify:
